@@ -1,0 +1,29 @@
+# Safe structured config sample: values are placeholders or env-var references.
+# Secrets are referenced by name and injected at runtime, never written here.
+app:
+  env: development
+  port: 8080
+  log_level: info
+
+database:
+  host: localhost
+  port: 5432
+  name: app_dev
+  user: ${DB_USER}            # injected from environment / secret store
+  password: ${DB_PASSWORD}    # injected from environment / secret store
+  sslmode: require
+
+api:
+  base_url: https://api.example.com
+  key: ${EXAMPLE_API_KEY}     # injected at runtime
+
+security:
+  allowed_origins:
+    - https://app.example.com
+  cookie_secure: true
+  jwt_signing_secret: ${JWT_SIGNING_SECRET}
+
+sample_data:
+  # Synthetic only: reserved domains and documentation IP ranges
+  admin_email: admin@example.com
+  test_ip: 192.0.2.10
